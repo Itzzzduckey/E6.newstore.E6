@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Engine6.0 - Premium Game Cheats & Hacks</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Tahoma, Verdana, Arial, sans-serif;
+      font-size: 13px;
+      color: #000;
+      background: #d8e0e8;
+      line-height: 1.5;
+    }
+
+    a { color: #0033cc; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .container {
+      width: 96%;
+      max-width: 1100px;
+      margin: 20px auto;
+      background: #fff;
+      border: 1px solid #a0b0c0;
+      border-radius: 8px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+      overflow: hidden;
+    }
+
+    .header {
+      background: linear-gradient(to bottom, #b0d0f0, #80a0d0);
+      padding: 12px 20px;
+      border-bottom: 1px solid #6080b0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: bold;
+      color: #003366;
+    }
+
+    .quick-login {
+      font-size: 12px;
+      color: #003366;
+    }
+
+    .quick-login button {
+      padding: 6px 14px;
+      background: linear-gradient(to bottom, #44aa44, #2e882e);
+      color: white;
+      border: 1px solid #1e661e;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 4px;
+      margin-left: 8px;
+    }
+
+    .quick-login button:hover {
+      background: linear-gradient(to bottom, #55bb55, #3f993f);
+    }
+
+    .main-content {
+      padding: 25px;
+      text-align: center;
+    }
+
+    .action-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin: 25px 0 35px;
+    }
+
+    .browse-btn {
+      display: inline-block;
+      padding: 12px 32px;
+      background: linear-gradient(135deg, #ffffff 0%, #f0f4f8 50%, #e8eff5 100%);
+      color: #003366;
+      font-size: 15px;
+      font-weight: bold;
+      text-decoration: none;
+      border: 1px solid #b0c0d0;
+      border-radius: 6px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      transition: all 0.22s ease;
+      cursor: pointer;
+    }
+
+    .browse-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+      background: linear-gradient(135deg, #f8faff 0%, #e8f0f8 50%, #d8e4f0 100%);
+    }
+
+    .browse-btn.hidden {
+      display: none;
+    }
+
+    .panel {
+      max-width: 920px;
+      margin: 0 auto 30px;
+      padding: 22px;
+      border: 1px solid #c0d0e0;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+      font-size: 13.5px;
+      color: #333;
+      text-align: left;
+      background: #f9fcff;
+    }
+
+    .intro {
+      background: #f0f8ff;
+      color: #003366;
+    }
+
+    .intro strong {
+      color: #000;
+    }
+
+    .ad-banner {
+      background: #003300;
+      color: #00ff00;
+      padding: 14px;
+      text-align: center;
+      font-size: 17px;
+      font-weight: bold;
+      border-bottom: 4px solid #006600;
+    }
+
+    .ad-banner .highlight {
+      color: #ffff00;
+    }
+
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: #f9f9f9;
+      border: 1px solid #c0d0e0;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.25);
+      overflow: hidden;
+    }
+
+    .modal-header {
+      background: linear-gradient(to bottom, #a0c0e0, #80a0c0);
+      padding: 14px;
+      font-weight: bold;
+      color: #003366;
+      border-bottom: 1px solid #6080a0;
+      text-align: center;
+      position: relative;
+    }
+
+    .close-btn {
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 22px;
+      cursor: pointer;
+      color: #444;
+    }
+
+    .modal-body {
+      padding: 24px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #888;
+      border-radius: 5px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+
+    .toggle-link {
+      color: #0033cc;
+      cursor: pointer;
+      font-size: 13px;
+      margin-top: 12px;
+      display: inline-block;
+    }
+
+    .error {
+      color: #c00;
+      font-size: 12px;
+      margin: 6px 0;
+      display: none;
+    }
+
+    @media (max-width: 500px) {
+      .action-buttons {
+        flex-direction: column;
+        gap: 12px;
+      }
+      .browse-btn {
+        width: 100%;
+        max-width: 320px;
+        margin: 0 auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="header">
+    <div class="logo">Engine6.0</div>
+    <div class="quick-login" id="quickLoginArea">
+      <span id="guestText">Guest</span>
+      <button onclick="openModal('login')">Log in / Sign up</button>
+      <span id="loggedInText" style="display:none;">
+        Logged in as: <strong id="currentUser"></strong>
+        <button onclick="logout()" style="background:#cc0000; border-color:#990000;">Logout</button>
+      </span>
+    </div>
+  </div>
+
+  <div class="ad-banner" style="display:none;">
+    <!-- You can re-enable this later -->
+    <!-- <span class="highlight">NEW</span> Fortnite Private Undetected – Limited Slots! -->
+  </div>
+
+  <div class="main-content">
+
+    <div class="action-buttons">
+      <a href="Store.html" class="browse-btn hidden" id="browseBtn">Browse Store</a>
+      <a href="status.html" class="browse-btn hidden" id="statusBtn">Status</a>
+    </div>
+
+    <!-- Intro Panel -->
+    <div class="intro panel">
+      <strong>Engine6.0</strong> provides premium, high-quality game cheats and hacking tools.<br><br>
+      Our focus is delivering the best private cheats available.<br><br>
+      <strong>Warning:</strong> Use at your own risk. We are not responsible for bans, account loss, or any legal consequences from game developers or anti-cheat systems.
+    </div>
+
+    <!-- News / Updates Panel -->
+    <div class="panel">
+      <h3>Latest News & Updates</h3>
+      <ul style="padding-left: 22px; margin: 12px 0;">
+        <li>Fortnite Private cheat released – limited slots available</li>
+        <li>CS2 cheat currently offline – major rework in progress</li>
+        <li>New EAC bypass implemented for HWID spoofer & Fortnite Private</li>
+        <li>Thank you for choosing Engine6.0!</li>
+      </ul>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- Auth Modal -->
+<div class="modal" id="authModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close-btn" onclick="closeModal()">×</span>
+      <span id="modalTitle">Login</span>
+    </div>
+    <div class="modal-body">
+
+      <div id="loginSection">
+        <form id="loginForm">
+          <input type="text" id="loginUsername" placeholder="Username" required autocomplete="username">
+          <input type="password" id="loginPassword" placeholder="Password" required autocomplete="current-password">
+          <div class="error" id="loginError"></div>
+          <button type="submit" class="browse-btn" style="width:100%; margin:18px 0 12px;">Log in</button>
+        </form>
+        <div>Don't have an account? <span class="toggle-link" onclick="switchTo('signup')">Sign up</span></div>
+      </div>
+
+      <div id="signupSection" style="display:none;">
+        <form id="signupForm">
+          <input type="text" id="signupUsername" placeholder="Choose Username" required autocomplete="username">
+          <input type="password" id="signupPassword" placeholder="Password" required autocomplete="new-password">
+          <input type="password" id="signupConfirm" placeholder="Confirm Password" required autocomplete="new-password">
+          <div class="error" id="signupError"></div>
+          <button type="submit" class="browse-btn" style="width:100%; margin:18px 0 12px;">Sign Up</button>
+        </form>
+        <div>Already have an account? <span class="toggle-link" onclick="switchTo('login')">Log in</span></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+const modal = document.getElementById('authModal');
+const browseBtn = document.getElementById('browseBtn');
+const statusBtn = document.getElementById('statusBtn');
+const currentUserEl = document.getElementById('currentUser');
+const loggedInText = document.getElementById('loggedInText');
+const guestText = document.getElementById('guestText');
+
+function openModal(mode = 'login') {
+  switchTo(mode);
+  modal.style.display = 'flex';
+}
+
+function closeModal() {
+  modal.style.display = 'none';
+}
+
+function switchTo(mode) {
+  const loginSec = document.getElementById('loginSection');
+  const signupSec = document.getElementById('signupSection');
+  const title = document.getElementById('modalTitle');
+
+  if (mode === 'signup') {
+    loginSec.style.display = 'none';
+    signupSec.style.display = 'block';
+    title.textContent = 'Sign Up';
+  } else {
+    signupSec.style.display = 'none';
+    loginSec.style.display = 'block';
+    title.textContent = 'Login';
+  }
+}
+
+function showLoggedIn(username) {
+  guestText.style.display = 'none';
+  loggedInText.style.display = 'inline';
+  currentUserEl.textContent = username;
+  browseBtn.classList.remove('hidden');
+  statusBtn.classList.remove('hidden');
+  localStorage.setItem('uc_loggedInUser', username);
+  closeModal();
+}
+
+function logout() {
+  localStorage.removeItem('uc_loggedInUser');
+  guestText.style.display = 'inline';
+  loggedInText.style.display = 'none';
+  browseBtn.classList.add('hidden');
+  statusBtn.classList.add('hidden');
+}
+
+const savedUser = localStorage.getItem('uc_loggedInUser');
+if (savedUser) {
+  showLoggedIn(savedUser);
+}
+
+document.getElementById('signupForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const user = document.getElementById('signupUsername').value.trim();
+  const pass = document.getElementById('signupPassword').value;
+  const confirm = document.getElementById('signupConfirm').value;
+  const err = document.getElementById('signupError');
+
+  if (pass !== confirm) {
+    err.textContent = 'Passwords do not match!';
+    err.style.display = 'block';
+    return;
+  }
+  if (localStorage.getItem('uc_user_' + user)) {
+    err.textContent = 'Username already taken!';
+    err.style.display = 'block';
+    return;
+  }
+
+  localStorage.setItem('uc_user_' + user, pass);
+  alert('Account created successfully! You can now log in.');
+  switchTo('login');
+  err.style.display = 'none';
+});
+
+document.getElementById('loginForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const user = document.getElementById('loginUsername').value.trim();
+  const pass = document.getElementById('loginPassword').value;
+  const stored = localStorage.getItem('uc_user_' + user);
+  const err = document.getElementById('loginError');
+
+  if (stored && stored === pass) {
+    showLoggedIn(user);
+    err.style.display = 'none';
+  } else {
+    err.textContent = 'Invalid username or password!';
+    err.style.display = 'block';
+  }
+});
+
+modal.addEventListener('click', e => {
+  if (e.target === modal) closeModal();
+});
+</script>
+
+</body>
+</html>

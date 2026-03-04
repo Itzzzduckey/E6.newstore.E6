@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>UnKnoWnCheaTs - Status & Detections</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Tahoma, Verdana, Arial, sans-serif;
+      font-size: 12px;
+      color: #000;
+      background: #d8e0e8;
+      line-height: 1.4;
+    }
+
+    .main-wrapper {
+      width: 98%;
+      max-width: 1100px;
+      margin: 20px auto;
+      background: #fff;
+      border: 1px solid #a0b0c0;
+      box-shadow: 0 0 8px rgba(0,0,0,0.15);
+    }
+
+    .header {
+      background: linear-gradient(to bottom, #b0d0f0, #80a0d0);
+      padding: 10px 15px;
+      border-bottom: 1px solid #6080b0;
+      overflow: hidden;
+    }
+
+    .logo {
+      float: left;
+      font-size: 18px;
+      font-weight: bold;
+      color: #003366;
+    }
+
+    .quick-login {
+      float: right;
+      font-size: 11px;
+      color: #003366;
+    }
+
+    .quick-login a, .quick-login button {
+      padding: 4px 10px;
+      margin-left: 8px;
+      background: linear-gradient(to bottom, #4a90e2, #357abd);
+      color: white;
+      text-decoration: none;
+      border: 1px solid #2a6099;
+      border-radius: 3px;
+      font-weight: bold;
+      cursor: pointer;
+      display: inline-block;
+    }
+
+    .quick-login a:hover, .quick-login button:hover {
+      background: linear-gradient(to bottom, #5aa0f2, #458cd2);
+    }
+
+    .quick-login button.login-btn {
+      background: linear-gradient(to bottom, #44aa44, #2e882e);
+      border: 1px solid #1e661e;
+    }
+
+    .quick-login button.login-btn:hover {
+      background: linear-gradient(to bottom, #55bb55, #3f993f);
+    }
+
+    .ad-banner {
+      background: #003300;
+      color: #00ff00;
+      padding: 12px;
+      text-align: center;
+      font-size: 16px;
+      font-weight: bold;
+      border-bottom: 3px solid #006600;
+    }
+
+    .ad-banner .highlight { color: #ffff00; }
+
+    .main-content {
+      padding: 15px;
+    }
+
+    .thread-title {
+      font-size: 16px;
+      font-weight: bold;
+      color: #003366;
+      margin: 0 0 15px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #c0d0e0;
+    }
+
+    .status-post {
+      padding: 14px;
+      background: #f9fcff;
+      border: 1px solid #d0e0f0;
+      border-radius: 4px;
+      margin-bottom: 25px;
+      font-size: 13px;
+      color: #333;
+    }
+
+    .status-post h3 {
+      margin: 20px 0 10px;
+      color: #003366;
+      font-size: 15px;
+      border-bottom: 1px solid #c0d0e0;
+      padding-bottom: 6px;
+    }
+
+    .status-item {
+      margin: 12px 0;
+      padding: 10px;
+      background: #fff;
+      border-left: 4px solid #ccc;
+      border-radius: 3px;
+    }
+
+    .status-item.detected { border-left-color: #c00; }
+    .status-item.undetected { border-left-color: #0a0; }
+    .status-item.unknown { border-left-color: #aa0; }
+
+    .status-item strong {
+      font-size: 14px;
+    }
+
+    .status-date {
+      font-size: 11px;
+      color: #666;
+      margin-top: 4px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="main-wrapper">
+
+  <div class="header">
+    <div class="logo">Engine6.0- Status & Detections</div>
+    <div class="quick-login" id="quickLoginArea">
+      <a href="index.html">Back to Home</a>
+      <span id="guestText">Guest</span>
+      <button class="login-btn" onclick="openModal('login')">Log in / Sign up</button>
+      <span id="loggedInText" style="display:none;">
+        Logged in as: <strong id="currentUser"></strong> 
+        <button onclick="logout()" style="margin-left:8px; padding:3px 8px; font-size:11px; background:#c00; color:white; border:none; cursor:pointer;">Logout</button>
+      </span>
+    </div>
+  </div>
+
+  <div class="ad-banner">
+  </div>
+
+  <div class="main-content">
+
+    <h1 class="thread-title">Current Detection Status & Updates</h1>
+
+    <div class="status-post">
+      <p>
+        <strong>Last updated:</strong> March 04, 2026<br>
+        This page shows the current known detection status of popular games and anti-cheats discussed on UC.<br>
+        Status is community-reported and may change quickly — always check the specific game section for latest info.<br><br>
+        <strong>Legend:</strong><br>
+        <span style="color:#0a0; font-weight:bold;">Green</span> = Undetected / Safe<br>
+        <span style="color:#c00; font-weight:bold;">Red</span> = Detected / Risky<br>
+        <span style="color:#aa0; font-weight:bold;">Yellow</span> = Unknown / Untested recently
+      </p>
+
+      <h3>Games</h3>
+
+      <div class="status-item undetected">
+        <strong>Counter-Strike 2 (CS2)</strong><br>
+        <span>External cheats (aimbot/ESP) – mostly undetected</span><br>
+        <span>Internal cheats – higher risk after recent VAC update</span>
+        <div class="status-date">Last check: March 03, 2026</div>
+      </div>
+      <div class="status-item undetected">
+        <strong>Fortnight</strong><br>
+        <span> most cheats undetected</span><br>
+        <span>Internal full suite – currently safe</span>
+        <div class="status-date">Last check: March 04, 2026</div>
+      </div>
+
+      <h3>Anti-Cheat Systems</h3>
+
+      <div class="status-item unknown">
+        <strong>Easy Anti-Cheat (EAC)</strong><br>
+        <span>December 2025 patch – many old methods patched</span><br>
+        <span>New bypasses appear weekly – check game-specific threads</span>
+        <div class="status-date">Last update: March 02, 2026</div>
+      </div>
+
+      <div class="status-item detected">
+        <strong>BattlEye</strong><br>
+        <span>Signature wave March 2026 – many public cheats hit</span><br>
+        <span>Kernel-level drivers still partially working</span>
+        <div class="status-date">Last update: March 03, 2026</div>
+      </div>
+
+      <div class="status-item detected">
+        <strong>Vanguard (Valorant)</strong><br>
+        <span>Latest kernel changes – very aggressive detection</span><br>
+        <span>Most externals flagged within hours</span>
+        <div class="status-date">Last update: February 25, 2026</div>
+      </div>
+
+      <h3>Notes</h3>
+      <p>
+        • Status can change at any moment — never assume something is safe forever.<br>
+        • Always read the latest thread posts and use HWID spoofer/VPN when testing.<br>
+        • Report new detections in the appropriate game section.<br><br>
+        <em>This page is updated manually by community moderators. For real-time info → check game forums.</em>
+      </p>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- Login / Signup Modal -->
+<div class="modal" id="authModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close-btn" onclick="closeModal()">×</span>
+      <span id="modalTitle">Login</span>
+    </div>
+    <div class="modal-body">
+
+      <div id="loginSection">
+        <form id="loginForm">
+          <input type="text" id="loginUsername" placeholder="Username" required>
+          <input type="password" id="loginPassword" placeholder="Password" required>
+          <div class="error" id="loginError"></div>
+          <button type="submit" class="buy-now" style="width:100%; margin:15px 0;">Log in</button>
+        </form>
+        <div>Don't have an account? <span class="toggle-link" onclick="switchTo('signup')">Sign up</span></div>
+      </div>
+
+      <div id="signupSection" style="display:none;">
+        <form id="signupForm">
+          <input type="text" id="signupUsername" placeholder="Choose Username" required>
+          <input type="password" id="signupPassword" placeholder="Password" required>
+          <input type="password" id="signupConfirm" placeholder="Confirm Password" required>
+          <div class="error" id="signupError"></div>
+          <button type="submit" class="buy-now" style="width:100%; margin:15px 0;">Sign Up</button>
+        </form>
+        <div>Already have an account? <span class="toggle-link" onclick="switchTo('login')">Log in</span></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+// Login / Signup Logic (same as other pages)
+const modal = document.getElementById('authModal');
+const currentUserEl = document.getElementById('currentUser');
+const loggedInText = document.getElementById('loggedInText');
+const guestText = document.getElementById('guestText');
+
+function openModal(mode = 'login') {
+  switchTo(mode);
+  modal.style.display = 'flex';
+}
+
+function closeModal() {
+  modal.style.display = 'none';
+}
+
+function switchTo(mode) {
+  document.getElementById('loginSection').style.display = mode === 'signup' ? 'none' : 'block';
+  document.getElementById('signupSection').style.display = mode === 'signup' ? 'block' : 'none';
+  document.getElementById('modalTitle').textContent = mode === 'signup' ? 'Sign Up' : 'Login';
+}
+
+function showLoggedIn(username) {
+  guestText.style.display = 'none';
+  loggedInText.style.display = 'inline';
+  currentUserEl.textContent = username;
+  localStorage.setItem('uc_loggedInUser', username);
+  closeModal();
+}
+
+function logout() {
+  localStorage.removeItem('uc_loggedInUser');
+  guestText.style.display = 'inline';
+  loggedInText.style.display = 'none';
+}
+
+const savedUser = localStorage.getItem('uc_loggedInUser');
+if (savedUser) showLoggedIn(savedUser);
+
+// Signup
+document.getElementById('signupForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const user = document.getElementById('signupUsername').value.trim();
+  const pass = document.getElementById('signupPassword').value;
+  const confirm = document.getElementById('signupConfirm').value;
+  const err = document.getElementById('signupError');
+
+  if (pass !== confirm) {
+    err.textContent = 'Passwords do not match!';
+    err.style.display = 'block';
+    return;
+  }
+  if (localStorage.getItem('uc_user_' + user)) {
+    err.textContent = 'Username already taken!';
+    err.style.display = 'block';
+    return;
+  }
+
+  localStorage.setItem('uc_user_' + user, pass);
+  alert('Account created! You can now log in.');
+  switchTo('login');
+  err.style.display = 'none';
+});
+
+// Login
+document.getElementById('loginForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const user = document.getElementById('loginUsername').value.trim();
+  const pass = document.getElementById('loginPassword').value;
+  const stored = localStorage.getItem('uc_user_' + user);
+  const err = document.getElementById('loginError');
+
+  if (stored && stored === pass) {
+    showLoggedIn(user);
+    err.style.display = 'none';
+  } else {
+    err.textContent = 'Invalid username or password';
+    err.style.display = 'block';
+  }
+});
+
+modal.addEventListener('click', e => {
+  if (e.target === modal) closeModal();
+});
+</script>
+
+</body>
+</html>

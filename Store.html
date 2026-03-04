@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Engine6.0 - Premium Store</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Tahoma, Verdana, Arial, sans-serif;
+      font-size: 12px;
+      color: #000;
+      background: #d8e0e8;
+      line-height: 1.4;
+    }
+
+    .main-wrapper {
+      width: 98%;
+      max-width: 1100px;
+      margin: 20px auto;
+      background: #fff;
+      border: 1px solid #a0b0c0;
+      box-shadow: 0 0 8px rgba(0,0,0,0.15);
+    }
+
+    .header {
+      background: linear-gradient(to bottom, #b0d0f0, #80a0d0);
+      padding: 10px 15px;
+      border-bottom: 1px solid #6080b0;
+      overflow: hidden;
+    }
+
+    .logo {
+      float: left;
+      font-size: 18px;
+      font-weight: bold;
+      color: #003366;
+    }
+
+    .quick-login {
+      float: right;
+      font-size: 11px;
+      color: #003366;
+    }
+
+    .quick-login a, .quick-login button {
+      padding: 4px 10px;
+      margin-left: 8px;
+      background: linear-gradient(to bottom, #4a90e2, #357abd);
+      color: white;
+      text-decoration: none;
+      border: 1px solid #2a6099;
+      border-radius: 3px;
+      font-weight: bold;
+      cursor: pointer;
+      display: inline-block;
+    }
+
+    .quick-login a:hover, .quick-login button:hover {
+      background: linear-gradient(to bottom, #5aa0f2, #458cd2);
+    }
+
+    .quick-login button.login-btn {
+      background: linear-gradient(to bottom, #44aa44, #2e882e);
+      border: 1px solid #1e661e;
+    }
+
+    .quick-login button.login-btn:hover {
+      background: linear-gradient(to bottom, #55bb55, #3f993f);
+    }
+
+    .ad-banner {
+      background: #003300;
+      color: #00ff00;
+      padding: 12px;
+      text-align: center;
+      font-size: 16px;
+      font-weight: bold;
+      border-bottom: 3px solid #006600;
+    }
+
+    .main-content {
+      padding: 15px;
+    }
+
+    .thread-title {
+      font-size: 16px;
+      font-weight: bold;
+      color: #003366;
+      margin: 0 0 15px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #c0d0e0;
+    }
+
+    .op-post {
+      padding: 12px;
+      background: #f9fcff;
+      border: 1px solid #d0e0f0;
+      border-radius: 4px;
+      margin-bottom: 25px;
+    }
+
+    .product-item {
+      margin-bottom: 20px;
+      padding: 14px;
+      background: #fff;
+      border: 1px solid #b0c0d0;
+      border-radius: 4px;
+    }
+
+    .product-title {
+      font-weight: bold;
+      color: #003366;
+      margin: 0 0 8px;
+      font-size: 14px;
+    }
+
+    .product-desc {
+      margin: 6px 0;
+      color: #444;
+    }
+
+    .product-price {
+      font-weight: bold;
+      color: #006600;
+      margin: 10px 0 12px;
+      font-size: 14px;
+    }
+
+    .action-btn {
+      padding: 6px 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-right: 8px;
+    }
+
+    .view-details {
+      background: linear-gradient(to bottom, #4a90e2, #357abd);
+      color: white;
+    }
+
+    .view-details:hover { background: linear-gradient(to bottom, #5aa0f2, #458cd2); }
+
+    .buy-now {
+      background: linear-gradient(to bottom, #44aa44, #2e882e);
+      color: white;
+    }
+
+    .buy-now:hover { background: linear-gradient(to bottom, #55bb55, #3f993f); }
+
+    .hidden-section {
+      display: none;
+      margin-top: 15px;
+      padding: 15px;
+      background: #f0f8ff;
+      border: 1px dashed #80a0c0;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .purchase-section img.product-img {
+      max-width: 180px;
+      height: auto;
+      border: 1px solid #808080;
+      margin: 0 15px 15px 0;
+      float: left;
+      object-fit: contain;
+      border-radius: 4px;
+    }
+
+    .confirm-msg {
+      color: #006600;
+      font-weight: bold;
+      margin-top: 12px;
+      display: none;
+    }
+
+    /* Modal styles (unchanged) */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: #f8f8f8;
+      border: 1px solid #c0d0e0;
+      border-radius: 6px;
+      width: 90%;
+      max-width: 380px;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.35);
+      overflow: hidden;
+    }
+
+    .modal-header {
+      background: linear-gradient(to bottom, #a0c0e0, #80a0c0);
+      padding: 12px;
+      font-weight: bold;
+      color: #003366;
+      border-bottom: 1px solid #6080a0;
+      text-align: center;
+      position: relative;
+    }
+
+    .close-btn {
+      position: absolute;
+      right: 12px;
+      top: 8px;
+      font-size: 20px;
+      cursor: pointer;
+      color: #444;
+    }
+
+    .modal-body {
+      padding: 20px;
+    }
+
+    input[type="text"], input[type="password"] {
+      width: 100%;
+      padding: 8px;
+      margin: 8px 0;
+      border: 1px solid #808080;
+      border-radius: 4px;
+      font-size: 13px;
+      box-sizing: border-box;
+    }
+
+    .toggle-link {
+      color: #0033cc;
+      cursor: pointer;
+      font-size: 12px;
+      margin-top: 10px;
+      display: inline-block;
+    }
+
+    .error {
+      color: #c00;
+      font-size: 11px;
+      margin: 6px 0;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="main-wrapper">
+
+  <div class="header">
+    <div class="logo">Engine6.0 - Premium Store</div>
+    <div class="quick-login" id="quickLoginArea">
+      <a href="index.html">Back to Home</a>
+      <span id="guestText">Guest</span>
+      <button class="login-btn" onclick="openModal('login')">Log in / Sign up</button>
+      <span id="loggedInText" style="display:none;">
+        Logged in as: <strong id="currentUser"></strong> 
+        <button onclick="logout()" style="margin-left:8px; padding:3px 8px; font-size:11px; background:#c00; color:white; border:none; cursor:pointer;">Logout</button>
+      </span>
+    </div>
+  </div>
+
+  <div class="ad-banner">
+    <!-- You can put a real ad/banner here if you want -->
+  </div>
+
+  <div class="main-content">
+
+    <h1 class="thread-title">Engine6.0 Premium Store - Undetected Cheats & Tools</h1>
+
+    <div class="op-post">
+      <p>
+        <strong>Official Engine6.0 Premium Store</strong><br>
+        All products are tested and currently undetected (or very low detection risk) as of March 2026.<br>
+        Click "View Details" for full features.<br>
+        Click "Buy Now" to select duration and payment.<br><br>
+        <em>Login required to finalize purchases</em>
+      </p>
+    </div>
+
+    <div class="product-list">
+
+      <!-- Product 1: HWID Spoofer -->
+      <div class="product-item">
+        <div class="product-title">Engine6.0 Private HWID Spoofer - Advanced Spoofing & EAC Bypass</div>
+        <div class="product-desc">Spoofs HWID, UUID, RAM, motherboard serials and more. Clean, no kernel driver required.</div>
+        <div class="product-price" id="pbo-price">Price: $150.00 (Lifetime)</div>
+
+        <button class="action-btn view-details" onclick="toggleSection('pbo', 'details')">View Details</button>
+        <button class="action-btn buy-now" onclick="toggleSection('pbo', 'purchase')">Buy Now</button>
+
+        <div id="pbo-details" class="hidden-section">
+          <p><strong>Features:</strong><br>
+          • Full HWID/UUID randomization<br>
+          • Anti-log & trace protection<br>
+          • One-click activation<br>
+          • No kernel driver needed<br>
+          • Tested undetected since January 2026<br>
+          • Compatible with Windows 10/11 (including 25H2)</p>
+        </div>
+
+        <div id="pbo-purchase" class="hidden-section purchase-section">
+          <img class="product-img" src="https://image2url.com/r2/default/images/1772414149338-bda78ef0-6a22-4570-9c3e-bc567a740ef4.png" alt="Engine6.0 HWID Spoofer">
+          <h4>Complete Your Purchase</h4>
+
+          <label>Duration:</label><br>
+          <select id="pbo-duration" onchange="updatePrice('pbo')">
+            <option value="day">$4.99 - 1 Day</option>
+            <option value="week">$9.99 - 1 Week</option>
+            <option value="month">$20.00 - 1 Month</option>
+            <option value="lifetime" selected>$150.00 - Lifetime</option>
+          </select><br><br>
+
+          <label>Payment Method:</label><br>
+          <select id="pbo-payment">
+            <option>Crypto (BTC / USDT)</option>
+            <option>Cash App</option>
+            <option>Gift Card (Amazon / Steam)</option>
+          </select><br><br>
+
+          <button class="buy-now" onclick="confirmPurchase('pbo')">Confirm Purchase</button>
+          <div id="pbo-confirm" class="confirm-msg"></div>
+        </div>
+      </div>
+
+      <!-- Product 2: Fortnite Cheat -->
+      <div class="product-item">
+        <div class="product-title">Engine6.0 Private Fortnite Cheat - Aimbot + ESP + Built-in Spoofer</div>
+        <div class="product-desc">Tornment-ready with aimbot, smoothing, ESP (box/corner), visibility check, color change on wallbang, built-in HWID spoofer for safety.</div>
+        <div class="product-price" id="eden-price">Price: $200.00 (Lifetime)</div>
+
+        <button class="action-btn view-details" onclick="toggleSection('eden', 'details')">View Details</button>
+        <button class="action-btn buy-now" onclick="toggleSection('eden', 'purchase')">Buy Now</button>
+
+        <div id="eden-details" class="hidden-section">
+          <p><strong>Features:</strong><br>
+          • Aimbot with smoothing + Fov check<br>
+          • Box + Corner ESP with visibility check (color changes when behind wall)<br>
+          • Built-in HWID spoofer (handles bans automatically)<br>
+          • VSync & FPS limiter options<br>
+          • Windows 10/11 compatible (including 25H2)</p>
+        </div>
+
+        <div id="eden-purchase" class="hidden-section purchase-section">
+          <img class="product-img" src="https://image2url.com/r2/default/images/1772413811194-5e368d7b-f9f2-44a9-92b3-6bb74c7a1f8c.png" alt="Engine6.0 Fortnite Cheat">
+          <h4>Complete Your Purchase</h4>
+
+          <label>Duration:</label><br>
+          <select id="eden-duration" onchange="updatePrice('eden')">
+            <option value="day">$7.99 - 1 Day</option>
+            <option value="week">$14.99 - 1 Week</option>
+            <option value="month">$24.99 - 1 Month</option>
+            <option value="lifetime" selected>$200.00 - Lifetime</option>
+          </select><br><br>
+
+          <label>Payment Method:</label><br>
+          <select id="eden-payment">
+            <option>Crypto (BTC / USDT)</option>
+            <option>Cash App</option>
+            <option>Gift Card (Amazon / Steam)</option>
+          </select><br><br>
+
+          <button class="buy-now" onclick="confirmPurchase('eden')">Confirm Purchase</button>
+          <div id="eden-confirm" class="confirm-msg"></div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- Login / Signup Modal (unchanged) -->
+<div class="modal" id="authModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close-btn" onclick="closeModal()">×</span>
+      <span id="modalTitle">Login</span>
+    </div>
+    <div class="modal-body">
+
+      <div id="loginSection">
+        <form id="loginForm">
+          <input type="text" id="loginUsername" placeholder="Username" required>
+          <input type="password" id="loginPassword" placeholder="Password" required>
+          <div class="error" id="loginError"></div>
+          <button type="submit" class="buy-now" style="width:100%; margin:15px 0;">Log in</button>
+        </form>
+        <div>Don't have an account? <span class="toggle-link" onclick="switchTo('signup')">Sign up</span></div>
+      </div>
+
+      <div id="signupSection" style="display:none;">
+        <form id="signupForm">
+          <input type="text" id="signupUsername" placeholder="Choose Username" required>
+          <input type="password" id="signupPassword" placeholder="Password" required>
+          <input type="password" id="signupConfirm" placeholder="Confirm Password" required>
+          <div class="error" id="signupError"></div>
+          <button type="submit" class="buy-now" style="width:100%; margin:15px 0;">Sign Up</button>
+        </form>
+        <div>Already have an account? <span class="toggle-link" onclick="switchTo('login')">Log in</span></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+// Toggle sections
+function toggleSection(id, type) {
+  const el = document.getElementById(id + '-' + type);
+  el.style.display = el.style.display === 'block' ? 'none' : 'block';
+}
+
+// Update displayed price
+function updatePrice(id) {
+  const select = document.getElementById(id + '-duration');
+  const priceEl = document.getElementById(id + '-price');
+  const val = select.value;
+
+  let priceText = '';
+  if (val === 'day')      priceText = id === 'pbo' ? '$4.99' : '$7.99';
+  else if (val === 'week') priceText = id === 'pbo' ? '$9.99' : '$14.99';
+  else if (val === 'month') priceText = id === 'pbo' ? '$20.00' : '$24.99';
+  else if (val === 'lifetime') priceText = id === 'pbo' ? '$150.00' : '$200.00';
+
+  priceEl.textContent = `Price: ${priceText} (${val.charAt(0).toUpperCase() + val.slice(1)})`;
+}
+
+// Handle purchase confirmation + Cash App redirect
+function confirmPurchase(id) {
+  const paymentSelect = document.getElementById(id + '-payment');
+  const selectedPayment = paymentSelect.options[paymentSelect.selectedIndex].text.trim().toLowerCase();
+  const durationSelect = document.getElementById(id + '-duration');
+  const selectedDuration = durationSelect.value;
+  const username = localStorage.getItem('uc_loggedInUser') || 'guest';
+
+  const confirmEl = document.getElementById(id + '-confirm');
+
+  if (selectedPayment.includes('cash app')) {
+    let amount = '150.00';
+    if (selectedDuration === 'day')    amount = id === 'pbo' ? '4.99' : '7.99';
+    else if (selectedDuration === 'week')  amount = id === 'pbo' ? '9.99' : '14.99';
+    else if (selectedDuration === 'month') amount = id === 'pbo' ? '20.00' : '24.99';
+    else if (selectedDuration === 'lifetime') amount = id === 'pbo' ? '150.00' : '200.00';
+
+    // CHANGE THIS TO YOUR REAL CASHAPP LINK
+    const cashAppUrl = `https://cash.app/$johnyukhh/${amount}?memo=Engine6.0-${id.toUpperCase()}-${username}-${selectedDuration}`;
+
+    confirmEl.textContent = 'Redirecting to Cash App... Please complete payment and send proof to support.';
+    confirmEl.style.display = 'block';
+
+    setTimeout(() => {
+      window.location.href = cashAppUrl;
+    }, 1800);
+
+  } else {
+    // Crypto / Gift cards - fake confirmation
+    confirmEl.textContent = 'Order placed! Delivery details sent to your account. (Send payment to support for crypto/gift cards)';
+    confirmEl.style.display = 'block';
+    setTimeout(() => {
+      confirmEl.style.display = 'none';
+    }, 6000);
+  }
+}
+
+// ────────────────────────────────────────────────
+// Login / Signup (unchanged)
+// ────────────────────────────────────────────────
+const modal = document.getElementById('authModal');
+const currentUserEl = document.getElementById('currentUser');
+const loggedInText = document.getElementById('loggedInText');
+const guestText = document.getElementById('guestText');
+
+function openModal(mode = 'login') {
+  switchTo(mode);
+  modal.style.display = 'flex';
+}
+
+function closeModal() {
+  modal.style.display = 'none';
+}
+
+function switchTo(mode) {
+  document.getElementById('loginSection').style.display = mode === 'signup' ? 'none' : 'block';
+  document.getElementById('signupSection').style.display = mode === 'signup' ? 'block' : 'none';
+  document.getElementById('modalTitle').textContent = mode === 'signup' ? 'Sign Up' : 'Login';
+}
+
+function showLoggedIn(username) {
+  guestText.style.display = 'none';
+  loggedInText.style.display = 'inline';
+  currentUserEl.textContent = username;
+  localStorage.setItem('uc_loggedInUser', username);
+  closeModal();
+}
+
+function logout() {
+  localStorage.removeItem('uc_loggedInUser');
+  guestText.style.display = 'inline';
+  loggedInText.style.display = 'none';
+}
+
+const savedUser = localStorage.getItem('uc_loggedInUser');
+if (savedUser) showLoggedIn(savedUser);
+
+document.getElementById('signupForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const user = document.getElementById('signupUsername').value.trim();
+  const pass = document.getElementById('signupPassword').value;
+  const confirm = document.getElementById('signupConfirm').value;
+  const err = document.getElementById('signupError');
+
+  if (pass !== confirm) {
+    err.textContent = 'Passwords do not match!';
+    err.style.display = 'block';
+    return;
+  }
+  if (localStorage.getItem('uc_user_' + user)) {
+    err.textContent = 'Username already taken!';
+    err.style.display = 'block';
+    return;
+  }
+
+  localStorage.setItem('uc_user_' + user, pass);
+  alert('Account created! You can now log in.');
+  switchTo('login');
+  err.style.display = 'none';
+});
+
+document.getElementById('loginForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const user = document.getElementById('loginUsername').value.trim();
+  const pass = document.getElementById('loginPassword').value;
+  const stored = localStorage.getItem('uc_user_' + user);
+  const err = document.getElementById('loginError');
+
+  if (stored && stored === pass) {
+    showLoggedIn(user);
+    err.style.display = 'none';
+  } else {
+    err.textContent = 'Invalid username or password';
+    err.style.display = 'block';
+  }
+});
+
+modal.addEventListener('click', e => {
+  if (e.target === modal) closeModal();
+});
+</script>
+
+</body>
+</html>
